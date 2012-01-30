@@ -17,6 +17,8 @@
 	"use strict";
 	/* Wysiwyg namespace: private properties and methods */
 
+    var appendControlsCalled = false;
+
 	var console = window.console ? window.console : {
 		log: $.noop,
 		error: function (msg) {
@@ -686,6 +688,12 @@ html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o
 		};
 
 		this.ui.appendControls = function () {
+
+            if(appendControlsCalled) {
+                return;
+            }
+            appendControlsCalled = true;
+
 			var ui = this,
 				self = this.self,
 				controls = self.parseControls(),
